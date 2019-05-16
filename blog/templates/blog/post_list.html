@@ -1,41 +1,12 @@
-<html>
-    <head>
-        <title>Life Blog</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="/">Life Blog</a></h1>
-        </div>
-
-        <!-- <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">Pure Life Experiences</a></h2>
-            <p><i><strong>“I have always believed, and I still believe, that whatever good or bad fortune may come our way we can always give it meaning and transform it into something of value.”</strong></i><br>
-                <i><strong>   - Hermann Hesse, Siddhartha</strong></i>
-            </p>        
-            <p>        It is true that optimists, or positive thinkers, are at an advantage in life compared to pessimists. This is because of the effect your mindset and attitude have on everything we come across. Our social relationships, our job and also our health are an integral part of our daily life and we can feel how negative and positive thoughts can have a domino effect on everything we do during the day.
-                    
-                    The way we choose to think, positive or negative, has a great impact on the final outcome and is mirrored in everything we do. Hence the importance of having a balanced outlook on life.
-                    
-            </p>
-        </div>
-
-        <div>
-            <p>published: 14.06.2014, 12:14</p>
-            <h2><a href="">Think Simple Now</a></h2>
-            <p><i><strong>“Success, in life, is most easily measured by the number of days you are truly happy.” </strong></i><br>
-                <i><strong> - Eric Edmeades</strong></i></p>
-
-            <p>        “Chief Happiness Officer” Tina Su started Think Simple Now back in 2007 as a personal mission to spread happiness, positiveness and compliance in everyone’s lives. Nowadays, her blog is a personal development community enclosing lessons, epiphanies and real life stories of authors from over 200 countries. Their aim is to aspire to find inner clarity and to increase the awareness of what makes life beautiful. 
-                    
-            </p>
-        </div> -->
-        {% for post in posts %}
-        <div>
-            <p>published: {{ post.published_date }}</p>
-            <h2><a href="">{{ post.title }}</a></h2>
-            <p>{{ post.text|linebreaksbr }}</p>
-        </div>
-        {% endfor %}
-    </body>
-</html>
+{% extends 'blog/base.html' %}
+{% block content %}
+                        {% for post in posts %}
+                            <div class="post">
+                                <div class="date">
+                                    <p>Published: {{ post.published_date }}</p>
+                                </div>
+                                <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                                <p>{{ post.text|linebreaksbr }}</p>
+                            </div>
+                        {% endfor %}
+{% endblock %}                   
